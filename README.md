@@ -1,6 +1,10 @@
 # 0x4447_product_aws_region_warning
 
-A simple Chrome extension that screams if you are in the wrong region based on the default setting.
+For wathever reazon AWS will switch you to a different region from time to time. They say this should not happend, and yuet it doese. We decided to make a simple Chrome extension that screams if you are in the wrong region based on the default setting you selected.
+
+# How Does It Work?
+
+When you clcik on the Extension icon you can select from a drop down your default region that you work most of the time. And when AWS for any reazon switches you to a different one, the extension will show the region that you are in read, and will play an animation "Night Rider" style, to let you know you are not in your favorite region anymore.
 
 # The End
 
