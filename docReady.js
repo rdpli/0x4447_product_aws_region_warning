@@ -1,3 +1,4 @@
+// This is an open source piece of code located at https://github.com/jfriend00/docReady
 (function(funcName, baseObj) {
     // The public function name defaults to window.docReady
     // but you can pass in your own object and own function name and those will be used

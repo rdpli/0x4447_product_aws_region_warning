@@ -22,3 +22,18 @@ h1 {
 .hidden {
 	display: none;
 }
+
+.aws-wrong-region-warning {    
+    animation: aws-wrong-region-warning-pulse 2s 3 both;
+    background-color: red;
+}
+  
+@keyframes aws-wrong-region-warning-pulse {
+    0% {
+        background-color: #001F3F;
+    }
+    100% {
+        background-color: #FF4136;
+    }
+}
+  
