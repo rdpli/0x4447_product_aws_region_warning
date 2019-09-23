@@ -17,10 +17,7 @@
     },
     "permissions": [
       "storage",
-      "activeTab",
-      "tabs",
-      "https://ajax.googleapis.com/",
-      "https://*/*",
+      "activeTab",      
       "declarativeContent"
     ],
     "background": {

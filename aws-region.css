@@ -24,16 +24,15 @@ h1 {
 }
 
 .aws-wrong-region-warning {    
-    animation: aws-wrong-region-warning-pulse 2s 3 both;
-    background-color: red;
+    animation: aws-wrong-region-warning-pulse 2s 3;    
 }
   
 @keyframes aws-wrong-region-warning-pulse {
     0% {
-        background-color: #001F3F;
+        color: #eee;
     }
     100% {
-        background-color: #FF4136;
+        color: #FF4136;
     }
 }
   
