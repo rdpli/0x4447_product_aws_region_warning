@@ -24,7 +24,7 @@ h1 {
 }
 
 .aws-wrong-region-warning {    
-    animation: aws-wrong-region-warning-pulse 2s 3;    
+    animation: aws-wrong-region-warning-pulse 2s 3 both;    
 }
   
 @keyframes aws-wrong-region-warning-pulse {
