@@ -7,6 +7,11 @@ port.postMessage({ command: "GetDefaultRegion" });
 
 function getRegionLabel() {
   var regionArea = document.getElementById("nav-regionMenu");
+
+  if (!regionArea) {
+    return null;
+  }
+  
   var regionLabels = regionArea.getElementsByClassName("nav-elt-label");
 
   if (regionLabels) {
