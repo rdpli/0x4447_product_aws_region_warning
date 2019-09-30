@@ -1,0 +1,38 @@
+body.aws-region-warning-body {
+	width: 300px;
+	height: 200px;
+	font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;    
+}
+
+body.aws-region-warning-body h1 {
+    font-size: 105%;
+}
+
+body.aws-region-warning-body #mainContent {
+    font-size: 95%;
+}
+
+body.aws-region-warning-body #status {
+    max-width: 400px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+body.aws-region-warning-body .hidden {
+	display: none;
+}
+
+.aws-wrong-region-warning {    
+    animation: aws-wrong-region-warning-pulse 2s 3 both;    
+}
+  
+@keyframes aws-wrong-region-warning-pulse {
+    0% {
+        color: #eee;
+    }
+    100% {
+        color: #FF4136;
+    }
+}
+  
