@@ -6,8 +6,6 @@ chrome.runtime.onConnect.addListener(function(port) {
   port.onMessage.addListener(function(message, sender) {
     switch (sender.name) {
       case "aws_region":
-        aws_region_content_port = port;
-
         switch (message.command) {
           case "GetDefaultRegion":
             getDefaultRegion(port);
@@ -21,8 +19,6 @@ chrome.runtime.onConnect.addListener(function(port) {
         break;
 
       case "aws_region_popup":
-        aws_region_popup_port = port;
-
         if (!message || !message.command) return;
 
         switch (message.command) {
@@ -33,6 +29,7 @@ chrome.runtime.onConnect.addListener(function(port) {
 
           case "SetDefaultRegion":
             setDefaultRegion(message.region, port);
+            sendContentSavedRegion(message.region);
 
             break;
 
@@ -83,7 +80,23 @@ function getDefaultRegion(port) {
 
 function setDefaultRegion(region, port) {
   chrome.storage.sync.set({ DefaultRegion: region }, function() {
-    port.postMessage({ command: "DefaultRegionSaved" });
+    port.postMessage({ 
+      command: "DefaultRegion",
+      response: region });
+  });  
+}
+
+function sendContentSavedRegion(region) {
+  chrome.tabs.query({
+    currentWindow: true,
+    url: "*://*.aws.amazon.com/*"
+  }, function(tabs) {
+    tabs.forEach(function(tab) {
+      chrome.tabs.sendMessage(tab.id, {
+        command: "DefaultRegion",
+        response: region
+      });
+    });
   });
 }
 

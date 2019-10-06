@@ -23,6 +23,10 @@ body.aws-region-warning-body .hidden {
 	display: none;
 }
 
+body.aws-region-warning-body .regionButton {
+    margin-top: 10px;
+}
+
 .aws-wrong-region-warning {    
     animation: aws-wrong-region-warning-pulse 2s 3 both;    
 }

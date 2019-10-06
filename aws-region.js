@@ -22,16 +22,33 @@ function getRegionLabel() {
 }
 
 function alertOnDifference() {
-  if (currentRegion && defaultRegion && (currentRegion !== 'Global') && currentRegion !== defaultRegion) {
-    var regionLabel = getRegionLabel();
+  var regionLabel = getRegionLabel();
+
+  if (currentRegion &&
+    defaultRegion &&
+    (currentRegion !== "Global") &&
+    currentRegion !== defaultRegion &&
+    !regionLabel.className.includes("aws-wrong-region-warning") ) {
     regionLabel.className = regionLabel.className + " aws-wrong-region-warning";
+  } else {
+    regionLabel.className = regionLabel.className.replace(" aws-wrong-region-warning", "");
   }
 }
 
 port.onMessage.addListener(function(message, sender) {
+  defaultRegionCheck();
+
   if (message.command && message.command === "DefaultRegion") {
     defaultRegion = message.response;
+    alertOnDifference();
+  }
+});
 
+chrome.runtime.onMessage.addListener(function(message, sender) {
+  defaultRegionCheck();
+
+  if (message.command && message.command === "DefaultRegion") {
+    defaultRegion = message.response;
     alertOnDifference();
   }
 });

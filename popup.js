@@ -1,3 +1,6 @@
+var currentRegion;
+var defaultRegion;
+
 function renderStatus(statusText) {
   document.getElementById("status").textContent = statusText;
 }
@@ -10,7 +13,7 @@ docReady(function() {
     btn.onclick = function(e) {
       port.postMessage({
         command: "SetDefaultRegion",
-        region: document.getElementById("defaultRegion").value
+        region: currentRegion
       });
     };
   }
@@ -19,27 +22,36 @@ docReady(function() {
   port.postMessage({ command: "GetCurrentRegion" });
 
   port.onMessage.addListener(function(message, sender) {
-    var defaultRegionInput = document.getElementById("defaultRegion");
+    var currentRegionMessage = document.getElementById("currentRegionMessage");
 
     if (
+      message &&
       message.command &&
       message.command === "DefaultRegion" &&
       message.response
     ) {
-      renderStatus('');
-      defaultRegionInput.value = message.response;
+      currentRegionMessage.innerText = `Your saved region is: ${message.response}`;
+      defaultRegion = message.response;
       btn.innerText = "Change Default Region";
     } else if (message.command === "DefaultRegionSaved") {
       renderStatus("Saved");
       port.postMessage({ command: "GetDefaultRegion" });
     } else if (
-      message.command === "CurrentRegion" &&
-      !defaultRegionInput.value
+      message.command === "CurrentRegion"
     ) {
-      renderStatus(
-        "No default region is saved. Your current region is " + message.response
-      );
-      defaultRegionInput.value = message.response;
+      currentRegion = message.response;
+
+      if (!currentRegion) {
+        renderStatus(
+          "Please refresh the page to use this extension."
+        );
+
+        btn.style = "display: none";
+
+        return;
+      }
+
+      btn.value = `Use ${currentRegion}`;      
     }
   });
 });
