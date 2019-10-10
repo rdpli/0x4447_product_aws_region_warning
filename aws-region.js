@@ -27,11 +27,12 @@ function alertOnDifference() {
   if (currentRegion &&
     defaultRegion &&
     (currentRegion !== "Global") &&
-    currentRegion !== defaultRegion &&
-    !regionLabel.className.includes("aws-wrong-region-warning") ) {
-    regionLabel.className = regionLabel.className + " aws-wrong-region-warning";
+    currentRegion !== defaultRegion) {
+      if (!regionLabel.className.includes("aws-wrong-region-warning")) {
+        regionLabel.className = regionLabel.className + " aws-wrong-region-warning";
+      }
   } else {
-    regionLabel.className = regionLabel.className.replace(" aws-wrong-region-warning", "");
+   regionLabel.className = regionLabel.className.replace(" aws-wrong-region-warning", "");
   }
 }
 
@@ -70,5 +71,5 @@ function defaultRegionCheck() {
 }
 
 docReady(function() {
-  defaultRegionCheck();
+  defaultRegionCheck();  
 });
