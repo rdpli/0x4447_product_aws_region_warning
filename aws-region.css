@@ -30,6 +30,10 @@ body.aws-region-warning-body .regionButton {
 .aws-wrong-region-warning {    
     animation: aws-wrong-region-warning-pulse 2s 3 both;    
 }
+
+.nav-elt-label.aws-correct-region {
+    color: #24ab48 !important;
+}
   
 @keyframes aws-wrong-region-warning-pulse {
     0% {
