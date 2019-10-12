@@ -1,4 +1,4 @@
-# 0x4447_product_aws_region_warning
+# 📣 AWS Region Warning
 
 For whatever reason AWS will switch you to a different region from time to time. They say this should not happend, and yuet it doese. We decided to make a simple Chrome extension that screams if you are in the wrong region based on the default setting you selected.
 
