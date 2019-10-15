@@ -1,10 +1,15 @@
 var defaultRegion;
 var currentRegion;
 
-//This line opens up a long-lived connection to your background page.
+//
+//    1.  This line opens up a long-lived connection to your background page.
+//
 var port = chrome.runtime.connect({ name: "aws_region" });
 port.postMessage({ command: "GetDefaultRegion" });
 
+//
+//    2.  This script resides with the AWS Console scripts. This function finds the current region on the Console page.
+//
 function getRegionLabel() {
   var regionArea = document.getElementById("nav-regionMenu");
 
@@ -21,6 +26,9 @@ function getRegionLabel() {
   return null;
 }
 
+//
+//    3.   This function finds the region and compares the saved region to the current one, changing the CSS styles of the region if necessary.
+//
 function alertOnDifference() {
   var regionLabel = getRegionLabel();
 
@@ -42,6 +50,9 @@ function alertOnDifference() {
   }
 }
 
+//
+//    4.  Listens for local messages from the background script. If the degault region changes, this fires, does the comparison and changes the color of the region
+//
 port.onMessage.addListener(function(message, sender) {
   defaultRegionCheck();
 
@@ -51,6 +62,9 @@ port.onMessage.addListener(function(message, sender) {
   }
 });
 
+//
+//    5.  Listens for messages sent to an active tab. If the degault region changes, this fires, does the comparison and changes the color of the region
+//
 chrome.runtime.onMessage.addListener(function(message, sender) {
   defaultRegionCheck();
 
@@ -60,6 +74,9 @@ chrome.runtime.onMessage.addListener(function(message, sender) {
   }
 });
 
+//
+//    6. Gets the current region from the HTML and checks to see if the region is the same as saved or not. It also sends the current region to any listeners.
+//
 function defaultRegionCheck() {
   var regionLabel = getRegionLabel();
 
@@ -76,6 +93,9 @@ function defaultRegionCheck() {
   }
 }
 
+//
+//    7. Runs the check above when the page has fully loaded
+//
 docReady(function() {
   defaultRegionCheck();  
 });
