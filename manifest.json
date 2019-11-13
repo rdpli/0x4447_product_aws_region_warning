@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-  
+
     "name": "AWS Region Warning",
-    "description": "AWS will switch you to a different region from time to time. This Chrome extension screams if you are in the wrong region based on the default setting you selected.",
+    "description": "Be notified when AWS switches your default region.",
     "version": "1.0",
     "icons": {
       "48" : "images/icon48.png",
@@ -20,7 +20,7 @@
     },
     "permissions": [
       "storage",
-      "activeTab",      
+      "activeTab",
       "declarativeContent",
       "tabs"
     ],
